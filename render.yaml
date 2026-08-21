@@ -1,0 +1,38 @@
+# Blueprint de Render: crea el backend (API) y el frontend (sitio estático)
+# en un solo paso. En Render: New + -> Blueprint -> conecta este repo.
+# Documentación: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: juranyi-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://juranyi-frontend.onrender.com
+      - key: DB_PATH
+        value: /data/juranyi.db
+    disk:
+      name: juranyi-data
+      mountPath: /data
+      sizeGB: 1
+
+  - type: web
+    name: juranyi-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://juranyi-backend.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
