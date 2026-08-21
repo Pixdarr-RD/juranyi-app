@@ -1,0 +1,4 @@
+# Copia este archivo a ".env" para desarrollo local, o define esta misma
+# variable como "Environment Variable" en tu hosting (Render/Vercel/Railway).
+# Debe apuntar a la URL pública de tu backend, terminando en /api.
+VITE_API_URL=http://localhost:4000/api
