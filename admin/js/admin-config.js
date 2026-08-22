@@ -8,5 +8,5 @@
  *   https://juranyi-backend.tu-subdominio.workers.dev/api
  */
 window.JURANYI_ADMIN_CONFIG = {
-  apiUrl: "https://juranyi-backend.TU-SUBDOMINIO.workers.dev/api",
+  apiUrl: "https://juranyi-backend.darwin-c90.workers.dev/api",
 };
